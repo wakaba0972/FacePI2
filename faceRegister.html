@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSSample</title>
+</head>
+    <body>
+        <div>
+            <video id='display'></video>
+            <button id='savBtn' style="width: 100px; height: 100px;" onclick="cam()">按我</button>
+        </div>
+    </body>
+
+    <script>
+        var display = document.getElementById('display')
+        var btn = document.getElementById('savBtn')
+        function cam(){
+            let constraints = {
+            video: true,
+            audio: false
+            }
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function (stream) {
+                    btn.innerText = 'yexy'
+                    this.display.src = URL.createObjectURL(stream)
+                })
+                .catch(function (error) {
+                    btn.innerText = error
+                });
+
+            display.addEventListener('loadedmetadata', e => {
+                    display.play()
+            })
+        }
+    </script>
+</html>
