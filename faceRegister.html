@@ -20,8 +20,8 @@
             }
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(function (stream) {
-                    this.display.srcObject = stream
-                    inputVideo.controls = false
+                    display.srcObject = stream
+                    display.controls = false
                 })
                 .catch(function (error) {
                     btn.innerText = error
