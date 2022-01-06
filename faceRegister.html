@@ -20,8 +20,7 @@
             }
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(function (stream) {
-                    let videoUrl = URL.createObjectURL(stream)
-                    this.display.src = videoUrl
+                    this.display.srcObject = stream
                     inputVideo.controls = false
                 })
                 .catch(function (error) {
