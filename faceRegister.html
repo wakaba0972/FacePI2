@@ -20,8 +20,9 @@
             }
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(function (stream) {
-                    btn.innerText = 'yexy'
-                    this.display.src = URL.createObjectURL(stream)
+                    let videoUrl = URL.createObjectURL(stream)
+                    this.display.src = videoUrl
+                    inputVideo.controls = false
                 })
                 .catch(function (error) {
                     btn.innerText = error
