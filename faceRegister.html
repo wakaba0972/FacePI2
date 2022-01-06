@@ -15,11 +15,12 @@
         var btn = document.getElementById('savBtn')
         function cam(){
             let constraints = {
-            video: true,
+            video: { width: 1280, height: 720 },
             audio: false
             }
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(function (stream) {
+                    a= stream
                     display.srcObject = stream
                     display.controls = false
                 })
