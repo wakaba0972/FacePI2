@@ -6,46 +6,12 @@
 </head>
     <body>
         <div>
-            <video id='display' onclick="detect(photoURL())"></video>
+            <video id='display' onclick="getURL().then(url=> detect(url))"></video>
         </div>
-        <button id='savBtn' style="width: 100px; height: 100px;" onclick="cam()">按我</button>
+        <button id='savBtn' style="width: 100px; height: 100px;" onclick="openCam()">按我</button>
     </body>
 
-    <script>
-        var display = document.getElementById('display')
-        var canvas = document.createElement('canvas')
-        var btn = document.getElementById('savBtn')
-        var context = canvas.getContext('2d');
-
-        function cam(){
-            let constraints = {video: true}
-            navigator.mediaDevices.getUserMedia(constraints)
-                .then(function (stream) {
-                    display.srcObject = stream
-                    display.play()
-                })
-                .catch(function (error) {
-                    btn.innerText = error
-                });
-        }
-        function photoURL() {
-            canvas.width = display.videoWidth
-            canvas.height = display.videoHeight
-            context.drawImage(display, 0, 0, display.videoWidth, display.videoHeight);
-            const dataUri = canvas.toDataURL('image/jpg');
-
-            axios.post('/detect', {
-                data: dataUri.split(',')[1]
-            })
-            .then(res=> {
-                console.log(res.data)
-                return window.location.href + '/' + res.data
-            })
-            .catch(err=> {
-                console.log(err)
-            })
-        }
-    </script>
+    <script src="/camera.js"></script>
     <script src="/faceDetect.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>
