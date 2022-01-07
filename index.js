@@ -25,8 +25,6 @@ var app = express()
     })
     .listen(PORT)
 
-const PORT = process.env.PORT || 3000;
-
 /*
 https.createServer(credentials, app)
     .listen(PORT, () => console.log('Listening on https://' + ip.address() + ':' + PORT))*/
