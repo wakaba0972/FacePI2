@@ -1,27 +1,14 @@
-function detect(data) {
-    let params = {
-        "returnFaceId": "true",
-        "recognitionModel": "recognition_04",
-        "detectionModel": "detection_03",
-        "faceIdTimeToLive": "86400",
-    };
-  
-    $.ajax({
-        url: "https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?" + $.param(params),
-        beforeSend: function(xhrObj){
-            // Request headers
-            xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "b9160fbd882f47bd821205a4bce64354");
-        },
-        type: "POST",
-        // Request body
-        body: data,
-        //data: '{"url": "' + url + '"}'
+function detect(url) {
+    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_04&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400",
+                {url: url},
+                {
+                    headers:{
+                        "Content-Type": "application/json",
+                        "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                    }
+                }
+    )
+    .then(res=> {
+        console.log(res.data)
     })
-    .done(function(data) {
-        alert("success");
-    })
-    .fail(function() {
-        alert("error");
-    });
 }

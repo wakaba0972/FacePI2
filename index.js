@@ -39,35 +39,3 @@ function save(data, name){
         })
     })
 }
-
-/*
-function detect(name) {
-    console.log('\n\n\n')
-    fs.readFile('./' + name + '.jpg', function(err, buf){
-        const uriBase = 'https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect';
-
-        // Request parameters.
-        const params = {
-            'returnFaceId': 'true',
-            'returnFaceLandmarks': 'false',
-            'returnFaceAttributes': ''
-        };
-
-        const options = {
-            uri: uriBase,
-            qs: params,
-            body: buf,
-            headers: {
-            'Content-Type': 'application/octet-stream',
-            'Ocp-Apim-Subscription-Key': "b9160fbd882f47bd821205a4bce64354"
-            }
-        };
-
-        request.post(options, (err, res, body) => {
-            console.log(body)
-            if(err) throw err
-            return body
-        });
-    })
-}
-*/   

@@ -6,7 +6,7 @@
 </head>
     <body>
         <div>
-            <video id='display' onclick="b()"></video>
+            <video id='display' onclick="detect(photoURL())"></video>
         </div>
         <button id='savBtn' style="width: 100px; height: 100px;" onclick="cam()">按我</button>
     </body>
@@ -28,43 +28,18 @@
                     btn.innerText = error
                 });
         }
-        function b() {
+        function photoURL() {
             canvas.width = display.videoWidth
             canvas.height = display.videoHeight
             context.drawImage(display, 0, 0, display.videoWidth, display.videoHeight);
-            var dataUri = canvas.toDataURL('image/jpg');
-            console.log(dataUri)
-            
-            
+            const dataUri = canvas.toDataURL('image/jpg');
+
             axios.post('/detect', {
                 data: dataUri.split(',')[1]
             })
-            .then((res)=> {console.log(res)})
+            .then((res)=> {console.log(res.data)})
             .catch((err)=> {console.log(err)})
-            
-
-
-            /*
-            fetch(dataUri)
-                .then(res => res.blob())
-                .then(blobData => {
-                    return blobData
-                })
-            */
-
-            /*
-            var data = dataUri.split(',')[1];
-            var bytes = window.atob(data);
-            var buf = new ArrayBuffer(bytes.length);
-            var byteArr = new Uint8Array(buf);
-            for (var i = 0; i < bytes.length; i++) {
-                byteArr[i] = bytes.charCodeAt(i);
-            }
-            return byteArr;
-            */
-
         }
-
     </script>
     <script src="/faceDetect.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
