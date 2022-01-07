@@ -26,7 +26,7 @@ function getURL() {
             data: dataUri.split(',')[1]
         })
         .then(res=> {
-            resolve(window.location.href + 'faces/' + res.data)
+            resolve(window.location.href + '/' + res.data)
         })
         .catch(err=> {
             reject(err)
