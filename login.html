@@ -14,10 +14,8 @@
     <script>
         new Vue = ({
             el: '#app',
-            mounted() {
-                setTimeout(()=>{
-                    openCam()
-                }, 3000)
+            beforeUpdate() {
+                openCam()
             },
         })
     </script>
