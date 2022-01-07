@@ -10,13 +10,18 @@
                 <video id='display' onclick="getURL().then(url=> detect(url))"></video>
             </div>
             <button id='openBtn' style="width: 100px; height: 100px;" onclick="openCam()">開啟攝影機</button>
-            <button id='takeBtn' style="width: 100px; height: 100px;" onclick="openCam()">拍照</button>
+            <button id='savBtn' onclick="getURL().then(url=> detect(url))" style="width: 300px; height: 150px;">{{text}}</button>
+            <input id='nameInput'>
+            <button id='confirm'></button>
         </div>
     </body>
     <script>
         new Vue = ({
             el: '#app',
-
+            data: {
+                name: '',
+                text: '照相: 還剩3張'
+            }
         })
     </script>
     <script src="/code/camera.js"></script>

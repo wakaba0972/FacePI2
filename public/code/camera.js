@@ -1,6 +1,6 @@
 var display = document.getElementById('display')
 var canvas = document.createElement('canvas')
-var btn = document.getElementById('Btn')
+var btn = document.getElementById('openBtn')
 var context = canvas.getContext('2d');
 
 function openCam(){

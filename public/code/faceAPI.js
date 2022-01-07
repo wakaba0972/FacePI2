@@ -1,5 +1,3 @@
-
-
 function detect(url) {
     axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400",
         {url: url},
@@ -16,7 +14,7 @@ function detect(url) {
     })
 }
 
-function creatPerson(name){
+function createPerson(name){
     axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons",
         {
             name: name
@@ -68,9 +66,9 @@ function identify(faceId){
         }
     )
     .then(res=> {
-        console.logres.data.candidates()
+        console.log(res.data[0])
         if(res.data.error) throw res.data.error
-        return res.data.candidates
+        return res.data[0]
     })
 }
 
