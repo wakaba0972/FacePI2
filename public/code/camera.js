@@ -1,12 +1,7 @@
 var display = document.getElementById('display')
 var canvas = document.createElement('canvas')
-var btn = document.getElementById('savBtn')
+var btn = document.getElementById('Btn')
 var context = canvas.getContext('2d');
-
-setTimeout(()=> {
-    openCam()
-}, 3000)
-
 
 function openCam(){
     let constraints = {video: {width: 500, height: 500}}
@@ -16,7 +11,7 @@ function openCam(){
             display.play()
         })
         .catch(function (error) {
-            btn.innerText = error
+            alert(error)
         });
 }
 
@@ -31,7 +26,7 @@ function getURL() {
             data: dataUri.split(',')[1]
         })
         .then(res=> {
-            resolve(window.location.href + 'code/' + res.data)
+            resolve(window.location.href + 'faces/' + res.data)
         })
         .catch(err=> {
             reject(err)

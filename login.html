@@ -9,12 +9,13 @@
             <div>
                 <video id='display' onclick="getURL().then(url=> detect(url))"></video>
             </div>
+            <button id='Btn' onclick="openCam()" style="width: 300px; height: 300px;">開啟攝影機</button>
         </div>
     </body>
     <script>
         new Vue = ({
             el: '#app',
-            
+
         })
     </script>
     <script src="/code/camera.js"></script>
