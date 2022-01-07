@@ -20,7 +20,7 @@ var app = express()
 function save(data){
     return new Promise(function(resolve, reject){
         let buf = Buffer.from(data, 'base64')
-        let id = Number(Math.random().toString() + Date.now()).toString(16).slice(2)
+        let id = '123' //Number(Math.random().toString() + Date.now()).toString(16).slice(2)
         let path = './public/faces/' + id + '.jpg'
         fs.writeFile(path, buf, function(err) {
             if(err) reject(err)
