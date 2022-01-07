@@ -2,35 +2,70 @@
 <html>
 <head>
     <title>JSSample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 </head>
     <body>
         <div>
-            <video id='display'></video>
-            <button id='savBtn' style="width: 100px; height: 100px;" onclick="cam()">按我</button>
+            <video id='display' onclick="b()"></video>
         </div>
+        <button id='savBtn' style="width: 100px; height: 100px;" onclick="cam()">按我</button>
     </body>
 
     <script>
         var display = document.getElementById('display')
+        var canvas = document.createElement('canvas')
         var btn = document.getElementById('savBtn')
+        var context = canvas.getContext('2d');
+
         function cam(){
-            let constraints = {
-            video: { width: 1280, height: 720 },
-            audio: false
-            }
+            let constraints = {video: true}
             navigator.mediaDevices.getUserMedia(constraints)
                 .then(function (stream) {
-                    a= stream
                     display.srcObject = stream
-                    display.controls = false
+                    display.play()
                 })
                 .catch(function (error) {
                     btn.innerText = error
                 });
-
-            display.addEventListener('loadedmetadata', e => {
-                    display.play()
-            })
         }
+        function b() {
+            canvas.width = display.videoWidth
+            canvas.height = display.videoHeight
+            context.drawImage(display, 0, 0, display.videoWidth, display.videoHeight);
+            var dataUri = canvas.toDataURL('image/jpg');
+            console.log(dataUri)
+            
+            
+            axios.post('/detect', {
+                data: dataUri.split(',')[1]
+            })
+            .then((res)=> {console.log(res)})
+            .catch((err)=> {console.log(err)})
+            
+
+
+            /*
+            fetch(dataUri)
+                .then(res => res.blob())
+                .then(blobData => {
+                    return blobData
+                })
+            */
+
+            /*
+            var data = dataUri.split(',')[1];
+            var bytes = window.atob(data);
+            var buf = new ArrayBuffer(bytes.length);
+            var byteArr = new Uint8Array(buf);
+            for (var i = 0; i < bytes.length; i++) {
+                byteArr[i] = bytes.charCodeAt(i);
+            }
+            return byteArr;
+            */
+
+        }
+
     </script>
+    <script src="/faceDetect.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>

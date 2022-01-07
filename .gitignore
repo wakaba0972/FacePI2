@@ -1,1 +1,4 @@
 node_modules
+pillaAuth-cert.pem
+pillaAuth-key.pem
+certrequest.csr
