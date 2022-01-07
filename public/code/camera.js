@@ -3,9 +3,13 @@ var canvas = document.createElement('canvas')
 var btn = document.getElementById('savBtn')
 var context = canvas.getContext('2d');
 
+setTimeout(()=> {
+    openCam()
+}, 3000)
+
 
 function openCam(){
-    let constraints = {video: true}
+    let constraints = {video: {width: 500, height: 500}}
     navigator.mediaDevices.getUserMedia(constraints)
         .then(function (stream) {
             display.srcObject = stream
@@ -34,5 +38,3 @@ function getURL() {
         })
     })
 }
-
-openCam()
