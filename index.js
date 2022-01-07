@@ -11,6 +11,8 @@ var credentials = {
     cert: hscert
 };  */
 
+const PORT = process.env.PORT || 3000;
+
 var app = express()
     .use(express.static('public'))
     .use(express.json({limit : '50000kb'}))
