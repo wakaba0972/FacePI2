@@ -37,7 +37,7 @@
             axios.post('/detect', {
                 data: dataUri.split(',')[1]
             })
-            .then((res)=> {return window.location.href + '/' + res.data})
+            .then((res)=> {return window.location.href + '/' + res.data; console.log(res.data)})
             .catch((err)=> {console.log(err)})
         }
     </script>
