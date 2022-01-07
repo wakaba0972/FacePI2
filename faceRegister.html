@@ -6,7 +6,7 @@
 </head>
     <body>
         <div>
-            <video id='display' onclick="detect(photoURL())"></video>
+            <video id='display' onclick="detectphoto(URL())"></video>
         </div>
         <button id='savBtn' style="width: 100px; height: 100px;" onclick="cam()">按我</button>
     </body>
@@ -37,7 +37,7 @@
             axios.post('/detect', {
                 data: dataUri.split(',')[1]
             })
-            .then((res)=> {console.log(res.data)})
+            .then((res)=> {return res.data})
             .catch((err)=> {console.log(err)})
         }
     </script>
