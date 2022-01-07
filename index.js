@@ -17,7 +17,7 @@ var app = express()
     .use(express.static('public'))
     .use(express.json({limit : '50000kb'}))
     .get('/', (req, res)=> {
-        res.sendFile(__dirname + '/faceRegister.html')
+        res.sendFile(__dirname + '/login.html')
     })
     .post('/detect', function(req, res){
         save(req.body.data, '123')

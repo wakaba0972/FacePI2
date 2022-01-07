@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>JSSample</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-</head>
+    <head>
+        <title>註冊畫面</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    </head>
     <body>
         <div>
             <video id='display' onclick="getURL().then(url=> detect(url))"></video>
         </div>
         <button id='savBtn' style="width: 100px; height: 100px;" onclick="openCam()">按我</button>
     </body>
-
-    <script src="/camera.js"></script>
-    <script src="/faceDetect.js"></script>
+    <script src="/code/camera.js"></script>
+    <script src="/code/faceDetect.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>
