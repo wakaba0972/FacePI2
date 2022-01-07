@@ -4,7 +4,7 @@ var btn = document.getElementById('Btn')
 var context = canvas.getContext('2d');
 
 function openCam(){
-    let constraints = {video: {width: 500, height: 500}}
+    let constraints = {video: {width: 500, height: 500, facingMode: { exact: "user" }}}
     navigator.mediaDevices.getUserMedia(constraints)
         .then(function (stream) {
             display.srcObject = stream
@@ -26,7 +26,7 @@ function getURL() {
             data: dataUri.split(',')[1]
         })
         .then(res=> {
-            resolve(window.location.href + '/' + res.data)
+            resolve(window.location.href + res.data)
         })
         .catch(err=> {
             reject(err)

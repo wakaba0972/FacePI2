@@ -9,17 +9,11 @@
             <div>
                 <video id='display' onclick="getURL().then(url=> detect(url))"></video>
             </div>
-            <button id='Btn' onclick="openCam()" style="width: 300px; height: 300px;">開啟攝影機</button>
+            <button id='Btn' onclick="openCam()" style="width: 300px; height: 150px;">開啟攝影機</button>
         </div>
     </body>
-    <script>
-        new Vue = ({
-            el: '#app',
-
-        })
-    </script>
+    
     <script src="/code/camera.js"></script>
-    <script src="/code/faceDetect.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="/code/faceAPI.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>
