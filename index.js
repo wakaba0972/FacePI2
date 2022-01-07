@@ -1,15 +1,15 @@
 const fs = require('fs');
 const ip = require("ip");
-const https = require('https');
+//const https = require('https');
 const express = require('express')
 const request = require("request");
-
+/*
 var hskey = fs.readFileSync(__dirname + '/pillaAuth-key.pem');
 var hscert = fs.readFileSync(__dirname + '/pillaAuth-cert.pem');
 var credentials = {
     key: hskey,
     cert: hscert
-};  
+};  */
 
 var app = express()
     .use(express.static('public'))
@@ -21,10 +21,13 @@ var app = express()
         save(req.body.data, '123')
         .then(path=> res.send(path))
     })
+    .listen(PORT)
 
 const PORT = process.env.PORT || 3000;
+
+/*
 https.createServer(credentials, app)
-    .listen(PORT, () => console.log('Listening on https://' + ip.address() + ':' + PORT))
+    .listen(PORT, () => console.log('Listening on https://' + ip.address() + ':' + PORT))*/
 
 function save(data, name){
     return new Promise(function(resolve, reject){
