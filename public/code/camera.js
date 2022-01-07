@@ -27,7 +27,7 @@ function getURL() {
             data: dataUri.split(',')[1]
         })
         .then(res=> {
-            resolve(window.location.href + '/code/' + res.data)
+            resolve(window.location.href + 'code/' + res.data)
         })
         .catch(err=> {
             reject(err)
