@@ -66,7 +66,6 @@ module.exports.addFace = function(personId, url){
             }
         )
         .then(res=> {
-            console.log(res.data.error)
             if(res.data.error) reject(res.data.error)
             resolve(personId)
         })

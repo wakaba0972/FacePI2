@@ -52,15 +52,14 @@ function saveUserData(name, personId){
 }*/
 
 function create(name, urls){
-    console.log(urls)
     return new Promise(function(resolve, reject){
         faceapi.createPerson(name)
-        .then(personId=> faceapi.addFace(personId, urls[0]))
-        .then(personId=> faceapi.addFace(personId, urls[1]))
-        .then(personId=> faceapi.addFace(personId, urls[2]))
-        .then((personId)=> {
-            console.log(personId + ' ' + name)
-            resolve(personId)
+        .then(personId=> {
+            let num = 0;
+            for(let i=0; i<3; ++i){
+                faceapi.addFace(personId, urls[i])
+                .then(personId=> {if(++num == 3) resolve(personId)})
+            }
         })
     })
 }
