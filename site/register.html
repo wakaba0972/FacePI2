@@ -11,7 +11,7 @@
             <button id='savBtn' v-bind:disabled='Tstate' onclick="getURL()" style="width: 100; height: 70px;">{{text}}</button>
             <input id='nameInput' placeholder="在此輸入暱稱" v-model='name' style='width: 100%; ;height: 70px; font-size: 50px'>
             <button id='confirm' v-bind:disabled='Cstate' style="width: 100%; height: 70px;" onclick="createPerson()">建立Person</button><br>
-            <font id='text' size="7" color="blue"></font>
+            <font id='text' size="7" color="blue">{{alert}}</font>
         </div>
     </body>
     <script src="/code/camera.js"></script>
