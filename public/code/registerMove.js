@@ -28,9 +28,8 @@ function getURL() {
             return
         }
         else{
-            let temp = v.text
-            temp[6] -= 1
-            v.text = temp
+            let temp = v.text.split(v.text[6])
+            v.text = temp[0] + (v.text[6]-1) + temp[1]
             v.facesURL.push(res.data.url)
         }
     })
