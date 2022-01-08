@@ -7,25 +7,26 @@
     <body>
         <div id='app'>
             <div>
-                <video id='display' onclick="getURL().then(url=> detect(url))"></video>
+                <video id='display'></video>
             </div>
             <button id='openBtn' style="width: 100px; height: 100px;" onclick="openCam()">開啟攝影機</button>
-            <button id='savBtn' onclick="getURL().then(url=> detect(url))" style="width: 300px; height: 150px;">{{text}}</button>
+            <button id='savBtn' onclick="getID()" style="width: 300px; height: 150px;">{{text}}</button>
             <input id='nameInput'>
-            <button id='confirm'></button>
+            <button id='confirm'  onclick="creatPerson()"></button>
         </div>
     </body>
     <script>
-        new Vue = ({
+        var v = new Vue = ({
             el: '#app',
             data: {
                 name: '',
-                text: '照相: 還剩3張'
+                text: '照相: 還剩3張',
+                faceIds: []
             }
         })
     </script>
     <script src="/code/camera.js"></script>
-    <script src="/code/faceAPI.js"></script>
+    <script src="/code/registerMove.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>

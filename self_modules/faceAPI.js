@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-export function detect(url) {
+module.exports.detect = function(url) {
     axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400",
         {url: url},
         {
@@ -12,11 +12,11 @@ export function detect(url) {
     )
     .then(res=> {
         if(res.data.error) throw res.data.error
-        return res.data.faceId
+        return res.data[0].faceId 
     })
 }
 
-export function createPerson(name){
+module.exports.createPerson = function(name){
     axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons",
         {
             name: name
@@ -34,7 +34,7 @@ export function createPerson(name){
     })
 }
 
-export function addFaces(personId, url){
+module.exports.addFaces = function(personId, url){
     axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons/" + personId + "/persistedFaces?detectionModel=detection_03",
         {
             url: url
@@ -52,7 +52,7 @@ export function addFaces(personId, url){
     })
 }
 
-export function identify(faceId){
+module.exports.identify = function(faceId){
     axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/identify",
         {
             faceIds: [faceId],
@@ -74,7 +74,7 @@ export function identify(faceId){
     })
 }
 
-export function train(){
+module.exports.train = function(){
     axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/train",
         {},
         {
@@ -88,7 +88,7 @@ export function train(){
     })
 }
 
-export function trainStatus(){
+module.exports.trainStatus = function(){
     axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/training",
     {
         headers: {
