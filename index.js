@@ -13,7 +13,8 @@ app.get('/', (req, res)=> {
     })
 app.post('/detect', function(req, res){
         save(req.body.data)
-        .then(path=> res.send('https://facepi.herokuapp.com/' + path))
+        .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
+        .then(data=> res.send(data))
     })
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
 

@@ -15,6 +15,10 @@ function getURL() {
         data: dataUri.split(',')[1]
     })
     .then(res=> {
+        if(res.data == 0){
+            alert('wrong')
+            return
+        }
         v.faceIds.push(res.data)
         console.log(res.data)
     })
