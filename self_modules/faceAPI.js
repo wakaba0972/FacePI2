@@ -2,31 +2,31 @@ const axios = require("axios");
 const e = require("express");
 
 module.exports.detect = function(url) {
-    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400",
-        {url: url},
-        {
-            headers:{
-                "Content-Type": "application/json",
-                "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+    return new Promise(function(resolve, reject){
+        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400",
+            {url: url},
+            {
+                headers:{
+                    "Content-Type": "application/json",
+                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                }
             }
-        }
-    )
-    .then(res=> {
-        if(res.data.error){
-            return null
-            console.log(res.data.error)
-        }
-        else {
-            if(res.data[0].faceId){
-                res.data[0].url = url
-                console.log(res.data[0])
-                return res.data[0]
+        )
+        .then(res=> {
+            if(res.data.error){
+                resolve({msg: 'wrong'})
             }
-            else{
-                console.log(res.data[0])
-                return {msg: 'no face'}
+            else {
+                if(res.data[0].faceId){
+                    res.data[0].url = url
+                    console.log(res.data[0])
+                    resolve(res.data[0])
+                }
+                else{
+                    console.log(res.data[0])
+                    resolve({msg: 'no face'})
+                }
             }
-        }
     })
 }
 
