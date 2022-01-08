@@ -1,3 +1,6 @@
+var canvas = document.createElement('canvas')
+var context = canvas.getContext('2d');
+
 function getID() {
     if(v.faceIds.length > 2){
         alert('already 3 photos')
@@ -12,8 +15,7 @@ function getID() {
         data: dataUri.split(',')[1]
     })
     .then(res=> {
-        console.log(res)
-        v.faceIds.push(res)
+        v.faceIds.push(res.data)
     })
     .catch(err=> {
         console.log(err)
