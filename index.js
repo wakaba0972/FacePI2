@@ -9,7 +9,7 @@ var app = express()
 app.use(express.static('public'))
 app.use(express.json({limit : '50000kb'}))
 app.get('/', (req, res)=> {
-        res.sendFile(__dirname + '/REGISTER.html')
+        res.sendFile(__dirname + '/register.html')
     })
 app.post('/detect', function(req, res){
         save(req.body.data)
