@@ -50,6 +50,7 @@ function saveUserData(name, personId){
 }*/
 
 function create(name, urls){
+    console.log(urls)
     return new Promise(function(resolve, reject){
         faceapi.createPerson(name)
         .then(personId=> faceapi.addFace(personId, urls[0]))
