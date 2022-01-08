@@ -1,7 +1,6 @@
 const fs = require('fs');
 const ip = require("ip");
-const express = require('express')
-const request = require("request");
+const express = require('express');
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,7 +14,7 @@ var app = express()
         save(req.body.data)
         .then(path=> res.send(path))
     })
-    .listen(PORT)
+    .listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
 
 function save(data){
     return new Promise(function(resolve, reject){
