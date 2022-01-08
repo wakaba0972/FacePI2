@@ -27,7 +27,7 @@ app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
 function save(data){
     return new Promise(function(resolve, reject){
         let buf = Buffer.from(data, 'base64')
-        let id = 123 // Date.now()
+        let id = Date.now()
         let path = './public/faces/' + id + '.png'
         fs.writeFile(path, buf, function(err) {
             if(err) reject(err)

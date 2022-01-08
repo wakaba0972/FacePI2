@@ -19,12 +19,10 @@ module.exports.detect = function(url) {
             }
             else {
                 if(JSON.stringify(res.data) != '[]'){
-                    res.data[0].url = url
                     console.log(res.data[0])
                     resolve(res.data[0])
                 }
                 else{
-                    console.log(res.data[0])
                     resolve({msg: 'no face', url: url})
                 }
             }
