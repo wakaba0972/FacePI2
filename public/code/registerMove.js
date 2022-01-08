@@ -1,7 +1,7 @@
 var canvas = document.createElement('canvas')
 var context = canvas.getContext('2d');
 
-function getID() {
+function getURL() {
     if(v.faceIds.length > 2){
         alert('already 3 photos')
         return
@@ -16,6 +16,7 @@ function getID() {
     })
     .then(res=> {
         v.faceIds.push(res.data)
+        console.log(res.data)
     })
     .catch(err=> {
         console.log(err)
