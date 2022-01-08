@@ -8,7 +8,7 @@
         <video id='display' style="max-height:35%; max-width:35%"></video>
         <div id='app'>
             <button id='openBtn' style="width: 100px; height: 100px;" onclick="openCam()">開啟攝影機</button>
-            <button id='savBtn' onclick="getURL()" style="width: 300px; height: 150px;">{{text}}</button>
+            <button id='savBtn' v-bind:disabled='state' onclick="getURL()" style="width: 300px; height: 150px;">{{text}}</button>
             <input id='nameInput'>
             <button id='confirm'  style="width: 300px; height: 150px;" onclick="creatPerson()"></button>
         </div>
@@ -21,6 +21,7 @@
         var v = new Vue({
             el: '#app',
             data: {
+                state: false,
                 name: '',
                 text: '照相: 還剩3張',
                 facesURL: []

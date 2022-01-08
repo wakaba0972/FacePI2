@@ -7,10 +7,11 @@ function getURL() {
         return 
     }
     else if(v.facesURL.length > 2){
+        v.state = true
         alert('already 3 photos')
         return
     }
-    
+    v.state = true
     canvas.width = display.videoWidth
     canvas.height = display.videoHeight
     context.drawImage(display, 0, 0, display.videoWidth, display.videoHeight);
@@ -20,6 +21,7 @@ function getURL() {
         data: dataUri.split(',')[1]
     })
     .then(res=> {
+        v.state = false
         console.log(res.data)
         if(res.data.msg){
             console.log(res.data.msg)
