@@ -11,8 +11,8 @@ module.exports.detect = function(url) {
         }
     )
     .then(res=> {
-        console.log('\n\n\n\n')
         if(res.data[0]){
+            console.log('\n\n\n\n')
             res.data[0].url = url
             return res.data[0]
         }

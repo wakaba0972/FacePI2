@@ -15,6 +15,7 @@ function getURL() {
         data: dataUri.split(',')[1]
     })
     .then(res=> {
+        a=res
         console.log(res.data)
         if(res.data){
             alert('wrong')
