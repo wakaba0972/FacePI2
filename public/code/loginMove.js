@@ -8,14 +8,10 @@ function getURL() {
         alert('open your camera')
         return 
     }
-    else if(v.facesURL.length > 2){
-        alert('already 3 photos')
-        return
-    }
     canvas.width = display.videoWidth
     canvas.height = display.videoHeight
     context.drawImage(display, 0, 0, display.videoWidth, display.videoHeight);
-    const dataUri = canvas.toDataURL('image/jpg');
+    const dataUri = canvas.toDataURL('image/png');
 
     axios.post('/detect', {
         data: dataUri.split(',')[1]
