@@ -22,7 +22,6 @@ function getURL() {
             return
         }
         v.faceIds.push(res.data)
-        console.log(res.data)
     })
     .catch(err=> {
         console.log(err)

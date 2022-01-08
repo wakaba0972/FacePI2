@@ -15,7 +15,7 @@ app.post('/detect', function(req, res){
         save(req.body.data)
         //.then(path=> faceapi.detect(ip.address() + ':' + PORT + path))
         .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
-        .then(data=> res.send(data))
+        .then(data=> res.json(data))
     })
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
 
