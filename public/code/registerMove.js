@@ -2,6 +2,9 @@ var canvas = document.createElement('canvas')
 var context = canvas.getContext('2d');
 
 function getURL() {
+    if(display.videoWidth == 0){
+        alert('open your camera')
+    }
     if(v.facesURL.length > 2){
         alert('already 3 photos')
         return
