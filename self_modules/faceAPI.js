@@ -17,7 +17,7 @@ module.exports.detect = function(url) {
                 resolve({msg: 'wrong'})
             }
             else {
-                console.log(JSON.parse(res.data) == '[]')
+                console.log(JSON.stringify(res.data) == '[]')
                 if(res.data[0].faceId){
                     res.data[0].url = url
                     console.log(res.data[0])
