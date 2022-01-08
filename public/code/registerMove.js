@@ -25,6 +25,7 @@ function getURL() {
         console.log(res.data)
         if(res.data.msg){
             console.log(res.data.msg)
+            v.alert = res.data.msg
             return
         }
         else{
@@ -54,7 +55,7 @@ function createPerson() {
         })
         .then(res=> {
             console.log(res.data.personId)
-            if(res.data.status == 'success') window.location.href = 'https://facepi.herokuapp.com/loginSite'
+            window.location.href = 'https://facepi.herokuapp.com/loginSite'
         })
     }
 }

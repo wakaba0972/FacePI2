@@ -43,8 +43,8 @@ app.post('/login', function(req, res){
     .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
     .then(data=> faceapi.identify(data.faceId))
     .then(personId=> faceapi.getPerson(personId))
-    .then(name=> res.send(name))
-    .catch(()=> res.send('登入失敗! 請確認\n 1.你已成功註冊/n 2.有照到臉'))
+    .then(name=> res.json({status: 'success', name: name}))
+    .catch(()=> res.json({status: 'failed', msg: '登入失敗! 請確認\n 1.你已成功註冊/n 2.有照到臉'}))
 })
 
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
