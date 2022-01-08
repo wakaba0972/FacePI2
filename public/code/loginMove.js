@@ -20,6 +20,6 @@ function login() {
     .then(res=> {
         btn.disabled = 0
         console.log(res.data)
-        text.innerText = (res.data.status == 'success'? 'Wecome!!!!!! ' + res.data.msg: res.data.name)
+        text.innerText = (res.data.status == 'success'? 'Wecome!!!!!! ' + res.data.name: res.data.msg)
     })
 }
