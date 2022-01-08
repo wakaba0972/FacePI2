@@ -13,7 +13,7 @@ module.exports.detect = function(url) {
         )
         .then(res=> {
             if(res.data.error){
-                resolve({msg: 'wrong', url: url})
+                reject('wrong')
             }
             else {
                 console.log(res.data)
@@ -22,7 +22,7 @@ module.exports.detect = function(url) {
                     resolve(res.data[0])
                 }
                 else{
-                    resolve({msg: 'no face', url: url})
+                    reject('no face')
                 }
             }
         })
@@ -88,9 +88,17 @@ module.exports.identify = function(faceId){
             }
         )
         .then(res=> {
-            console.log(res.data[0])
-            if(res.data.error) reject(res.data.error)
-            resolve(res.data[0])
+            if(res.data.error) {
+                reject(res.data.error)
+            }
+            else{
+                if(JSON.stringify(res.data.candidates) != '[]'){
+                    resolve(res.data[0].candidates.personId)
+                }
+                else{
+                    reject('no face')
+                }
+            }
         })
     })
 }

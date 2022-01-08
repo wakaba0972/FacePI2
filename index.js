@@ -8,38 +8,36 @@ const PORT = process.env.PORT || 3000;
 var app = express()
 app.use(express.static('public'))
 app.use(express.json({limit : '50000kb'}))
-app.get('/register', (req, res)=> {
-        res.sendFile(__dirname + '/register.html')
-    })
-app.get('/login', (req, res)=> {
+app.get('/registerSite', (req, res)=> {
+    res.sendFile(__dirname + '/register.html')
+})
+
+app.get('/loginSite', (req, res)=> {
     res.sendFile(__dirname + '/login.html')
 })
+
 app.post('/detect', function(req, res){
-        save(req.body.data)
-        //.then(path=> faceapi.detect(ip.address() + ':' + PORT + path))
-        .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
-        .then(data=> {
-            res.json(data)})
-    })
-app.post('/create', function(req, res){
-        console.log(req.body.urls)
-        create(req.body.name, req.body.urls)
-        .then(text=> res.send(text))
-})
-app.post('/identify', function(req, res){
-    faceapi.identify(req.body.faceId)
+    save(req.body.data)
+    //.then(path=> faceapi.detect(ip.address() + ':' + PORT + path))
+    .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
     .then(data=> {
-        console.log(data)
-        res.json(data)
-    })
+        res.json(data)})
 })
-app.post('getPerson', function(req, res){
-    faceapi.getPerson(req.body.personId)
-    .then(name=> {
-        console.log(name)
-        res.send(name)
-    })
+
+app.post('/create', function(req, res){
+    console.log(req.body.urls)
+    create(req.body.name, req.body.urls)
+    .then(text=> res.send(text))
 })
+
+app.post('/login', function(req, res){
+    save(req.body.data)
+    .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
+    .then(data=> faceapi.identify(data.faceId))
+    .then(personId=> faceapi.getPerson(personId))
+    .then(name=> res.send(name))
+})
+
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
 
 function save(data){
