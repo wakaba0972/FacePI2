@@ -43,6 +43,7 @@ module.exports.createPerson = function(name){
             }
         )
         .then(res=> {
+            console.log(res.data.personId)
             if(res.data.error) reject(res.data.error)
             resolve(res.data.personId)
         })
