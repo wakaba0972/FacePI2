@@ -28,6 +28,9 @@ function getURL() {
             return
         }
         else{
+            let temp = v.text[6]
+            temp[6] -= 1
+            v.text = temp
             v.facesURL.push(res.data.url)
         }
     })
@@ -36,7 +39,7 @@ function getURL() {
     })
 }
 
-function creatPerson() {
+function createPerson() {
     if(V.facesURL.length < 3){
         alert('需要3張照片')
         return
@@ -46,7 +49,11 @@ function creatPerson() {
     }
     else{
         axios.post('/create', {
-            name: v.name
+            name: v.name,
+            urls: facesURL
+        })
+        .then(res=> {
+            console.log(res.data)
         })
     }
 }

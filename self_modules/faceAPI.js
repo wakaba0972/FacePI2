@@ -13,13 +13,12 @@ module.exports.detect = function(url) {
             }
         )
         .then(res=> {
-            console.log(res.data)
             if(res.data.error){
                 resolve({msg: 'wrong', url: url})
             }
             else {
+                console.log(res.data)
                 if(JSON.stringify(res.data) != '[]'){
-                    console.log(res.data[0])
                     resolve(res.data[0])
                 }
                 else{
@@ -31,38 +30,42 @@ module.exports.detect = function(url) {
 }
 
 module.exports.createPerson = function(name){
-    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons",
-        {
-            name: name
-        },
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+    return new Promise(function(resolve, reject){
+        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons",
+            {
+                name: name
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                }
             }
-        }
-    )
-    .then(res=> {
-        if(res.data.error) throw res.data.error
-        return res.data.personId
+        )
+        .then(res=> {
+            if(res.data.error) reject(res.data.error)
+            resolve(res.data.personId)
+        })
     })
 }
 
-module.exports.addFaces = function(personId, url){
-    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons/" + personId + "/persistedFaces?detectionModel=detection_03",
-        {
-            url: url
-        },
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+module.exports.addFace = function(personId, url){
+    return new Promise(function(resolve, reject){
+        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons/" + personId + "/persistedFaces?detectionModel=detection_03",
+            {
+                url: url
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                }
             }
-        }
-    )
-    .then(res=> {
-        if(res.data.error) throw res.data.error
-        return res.data.persistedFaceId
+        )
+        .then(res=> {
+            if(res.data.error) reject(res.data.error)
+            resolve(personId)
+        })
     })
 }
 
