@@ -34,7 +34,7 @@ app.post('/create', function(req, res){
     console.log(req.body.urls)
     create(req.body.name, req.body.urls)
     .then(personId=>{
-        res.json({ststus: 'success', personId: personId})
+        res.json({status: 'success', personId: personId})
     })
 })
 
