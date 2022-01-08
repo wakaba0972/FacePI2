@@ -20,6 +20,18 @@ function login() {
     .then(res=> {
         btn.disabled = 0
         console.log(res.data)
-        text.innerText = (res.data.status == 'success'? 'Wecome!!!!!! ' + res.data.name: res.data.msg)
+        if(res.data.status == 'success'){
+            text.innerText = 'Wecome!!!!!! ' + res.data.name
+            
+            stream = display.srcObject;
+            tracks = stream.getTracks();
+            tracks.forEach(function(track) {
+                track.stop();
+             });
+             videoEl.srcObject = null;
+        }
+        else{
+            text.innerText = res.data.msg
+        }
     })
 }
