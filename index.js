@@ -8,9 +8,12 @@ const PORT = process.env.PORT || 3000;
 var app = express()
 app.use(express.static('public'))
 app.use(express.json({limit : '50000kb'}))
-app.get('/', (req, res)=> {
+app.get('/register', (req, res)=> {
         res.sendFile(__dirname + '/register.html')
     })
+app.get('/login', (req, res)=> {
+    res.sendFile(__dirname + '/login.html')
+})
 app.post('/detect', function(req, res){
         save(req.body.data)
         //.then(path=> faceapi.detect(ip.address() + ':' + PORT + path))
