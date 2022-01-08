@@ -11,13 +11,12 @@ module.exports.detect = function(url) {
         }
     )
     .then(res=> {
-        if(res.data[0].faceId){
+        if(res.data[0]){
             res.data[0].url = url
             return res.data[0]
-            console.log(res.data[0])
         }
         else {
-            return {data: 0}
+            return {data: null}
         }
     })
 }
