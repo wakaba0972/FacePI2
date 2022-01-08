@@ -4,11 +4,13 @@ var context = canvas.getContext('2d');
 function getURL() {
     if(display.videoWidth == 0){
         alert('open your camera')
+        return 
     }
-    if(v.facesURL.length > 2){
+    else if(v.facesURL.length > 2){
         alert('already 3 photos')
         return
     }
+    
     canvas.width = display.videoWidth
     canvas.height = display.videoHeight
     context.drawImage(display, 0, 0, display.videoWidth, display.videoHeight);
