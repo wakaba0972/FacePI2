@@ -8,8 +8,13 @@ const PORT = process.env.PORT || 3000;
 var app = express()
 app.use(express.static('public'))
 app.use(express.json({limit : '50000kb'}))
+
 app.get('/registerSite', (req, res)=> {
     res.sendFile(__dirname + '/register.html')
+})
+
+app.get('/registerSite', (req, res)=> {
+    res.sendFile(__dirname + '/home.html')
 })
 
 app.get('/loginSite', (req, res)=> {
@@ -22,13 +27,15 @@ app.post('/detect', function(req, res){
     .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
     .then(data=> {
         res.json(data)})
-    .catch(()=> res.send('偵測失敗! 請確實照到臉'))
+    .catch(()=> res.json({msg: '偵測失敗! 請確實照到臉'}))
 })
 
 app.post('/create', function(req, res){
     console.log(req.body.urls)
     create(req.body.name, req.body.urls)
-    .then(text=> res.send(text))
+    .then(personId=>{
+        res.json({ststus: 'success', personId: personId})
+    })
 })
 
 app.post('/login', function(req, res){
