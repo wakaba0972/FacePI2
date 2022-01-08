@@ -22,6 +22,7 @@ app.post('/detect', function(req, res){
     .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
     .then(data=> {
         res.json(data)})
+    .catch(()=> res.send('偵測失敗! 請確實照到臉'))
 })
 
 app.post('/create', function(req, res){
@@ -36,6 +37,7 @@ app.post('/login', function(req, res){
     .then(data=> faceapi.identify(data.faceId))
     .then(personId=> faceapi.getPerson(personId))
     .then(name=> res.send(name))
+    .catch(()=> res.send('登入失敗! 請確認\n 1.你已成功註冊/n 2.有照到臉'))
 })
 
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
