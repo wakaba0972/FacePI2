@@ -35,6 +35,10 @@ app.post('/identify', function(req, res){
 })
 app.post('getPerson', function(req, res){
     faceapi.getPerson(req.body.personId)
+    .then(name=> {
+        console.log(name)
+        res.send(name)
+    })
 })
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
 
