@@ -39,11 +39,11 @@ function getURL() {
 }
 
 function createPerson() {
-    if(V.facesURL.length < 3){
+    if(v.facesURL.length < 3){
         alert('需要3張照片')
         return
     }
-    else if(V.name == ''){
+    else if(v.name == ''){
         alert('請輸入暱稱')
     }
     else{
