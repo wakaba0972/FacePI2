@@ -14,14 +14,16 @@ module.exports.detect = function(url) {
     .then(res=> {
         if(res.data.error){
             return null
+            console.log(res.data.error)
         }
         else {
             if(res.data[0].faceId){
-                console.log('\n\n\n\n')
                 res.data[0].url = url
+                console.log(res.data[0])
                 return res.data[0]
             }
             else{
+                console.log(res.data[0])
                 return {msg: 'no face'}
             }
         }
