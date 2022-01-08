@@ -1,4 +1,5 @@
 const axios = require("axios");
+const e = require("express");
 
 module.exports.detect = function(url) {
     axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400",
@@ -11,13 +12,18 @@ module.exports.detect = function(url) {
         }
     )
     .then(res=> {
-        if(res.data[0]){
-            console.log('\n\n\n\n')
-            res.data[0].url = url
-            return res.data[0]
+        if(res.data.error){
+            return null
         }
         else {
-            return null
+            if(res.data[0].faceId){
+                console.log('\n\n\n\n')
+                res.data[0].url = url
+                return res.data[0]
+            }
+            else{
+                return {msg: 'no face'}
+            }
         }
     })
 }
