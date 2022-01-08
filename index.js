@@ -21,8 +21,8 @@ app.post('/detect', function(req, res){
     })
 app.post('/create', function(req, res){
         console.log(req.body.urls)
-        //create(req.body.name, req.body.urls)
-        //.then(text=> res.send(text))
+        create(req.body.name, req.body.urls)
+        .then(text=> res.send(text))
 })
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
 
