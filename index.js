@@ -9,7 +9,7 @@ var app = express()
 app.use(express.static('public'))
 app.use(express.json({limit : '50000kb'}))
 
-app.get('/registerSite', (req, res)=> {
+app.get('/', (req, res)=> {
     res.sendFile(__dirname + '/register.html')
 })
 
