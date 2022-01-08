@@ -14,7 +14,7 @@ module.exports.detect = function(url) {
         )
         .then(res=> {
             if(res.data.error){
-                resolve({msg: 'wrong'})
+                resolve({msg: 'wrong', url: url})
             }
             else {
                 if(JSON.stringify(res.data) != '[]'){
@@ -24,7 +24,7 @@ module.exports.detect = function(url) {
                 }
                 else{
                     console.log(res.data[0])
-                    resolve({msg: 'no face'})
+                    resolve({msg: 'no face', url: url})
                 }
             }
         })
