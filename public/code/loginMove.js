@@ -15,7 +15,8 @@ function getURL() {
         data: dataUri.split(',')[1]
     })
     .then(res=> {
-        return res.data.faceId
+        console.log(res.data)
+        return identify(res.data.faceId)
     })
 }
 
@@ -25,7 +26,7 @@ function identify(faceId){
     })
     .then(res=> {
         if(JSON.stringify(res.data.candidates) != '[]'){
-            return res.data.personId
+            return getName(res.data.personId)
         }
     })
 }
