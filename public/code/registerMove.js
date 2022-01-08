@@ -20,11 +20,11 @@ function getID() {
 }
 
 function creatPerson() {
-    if(this.faceIds.length < 3){
+    if(V.faceIds.length < 3){
         alert('需要3張照片')
         return
     }
-    else if(this.name == ''){
+    else if(V.name == ''){
         alert('請輸入暱稱')
     }
     else{
