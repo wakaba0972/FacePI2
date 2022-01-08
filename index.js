@@ -39,6 +39,7 @@ function save(data){
 }
 
 function saveUserData(name, personID){
+    console.log(personID)
     return new Promise(function(resolve, reject){
         let data = JSON.stringify({name: name});
         fs.writeFile('./Persons Data/' + personID + '.json', data, function(err){
