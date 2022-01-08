@@ -1,5 +1,4 @@
 const axios = require("axios");
-const e = require("express");
 
 module.exports.detect = function(url) {
     return new Promise(function(resolve, reject){
@@ -92,6 +91,24 @@ module.exports.identify = function(faceId){
             console.log(res.data[0])
             if(res.data.error) reject(res.data.error)
             resolve(res.data[0])
+        })
+    })
+}
+
+module.exports.getPerson = function(personId){
+    return new Promise(function(resolve, reject){
+        axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons/" + personId,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                }
+            },
+        )
+        .then(res=> {
+            console.log(res.data)
+            if(res.data.error) reject(res.data.error)
+            resolve(res.data.name)
         })
     })
 }

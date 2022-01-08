@@ -2,7 +2,6 @@ const fs = require('fs');
 const ip = require("ip");
 const express = require('express');
 const faceapi = require('./self_modules/faceAPI');
-const { Console } = require('console');
 
 const PORT = process.env.PORT || 3000;
 
@@ -24,9 +23,17 @@ app.post('/create', function(req, res){
         create(req.body.name, req.body.urls)
         .then(text=> res.send(text))
 })
+app.post('/identify', function(req, res){
+    faceapi.identify(req.body.faceId)
+    .then(data=> {
+        console.log(data)
+        res.json(data)
+    })
+})
+app.post('getPerson', function(req, res){
+    faceapi.getPerson(req.body.personId)
+})
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
-
-
 
 function save(data){
     return new Promise(function(resolve, reject){

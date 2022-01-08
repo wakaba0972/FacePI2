@@ -1,4 +1,3 @@
 var a = require('./self_modules/faceAPI')
-var fs = require('fs')
 
-fs.writeFileSync('./public/PersonData.json', {asd: 465})
+a.detect("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHsU-CD294HLe0ikSejQik1C4RgBe79ZNOeA&usqp=CAU")
