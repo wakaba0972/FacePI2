@@ -36,6 +36,9 @@ app.post('/create', function(req, res){
     .then(personId=>{
         res.json({status: 'success', personId: personId})
     })
+    .catch(()=> {
+        res.json({status: 'failed', msg: '我不知道怎麼了，在試一次看看?'})
+    })
 })
 
 app.post('/login', function(req, res){
@@ -44,7 +47,7 @@ app.post('/login', function(req, res){
     .then(data=> faceapi.identify(data.faceId))
     .then(personId=> faceapi.getPerson(personId))
     .then(name=> res.json({status: 'success', name: name}))
-    .catch(()=> res.json({status: 'failed', msg: '登入失敗! 請確認\n 1.你已成功註冊/n 2.有照到臉'}))
+    .catch(()=> res.json({status: 'failed', msg: '登入失敗! 請確認\n 1.你已成功註冊\n 2.有照到臉'}))
 })
 
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))

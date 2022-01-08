@@ -55,8 +55,12 @@ function createPerson() {
             urls: v.facesURL
         })
         .then(res=> {
-            console.log(res.data.personId)
-            window.location.href = 'https://facepi.herokuapp.com/loginSite'
+            if(res.data.status == 'success'){
+                window.location.href = 'https://facepi.herokuapp.com/loginSite'
+            }
+            else{
+                v.alert = res.data.msg
+            }
         })
     }
 }
