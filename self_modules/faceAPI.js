@@ -88,6 +88,7 @@ module.exports.identify = function(faceId){
             }
         )
         .then(res=> {
+            console.log(res.data)
             if(res.data.error) {
                 reject(res.data.error)
             }
