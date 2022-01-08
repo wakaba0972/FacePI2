@@ -1,7 +1,8 @@
 const fs = require('fs');
 const ip = require("ip");
 const express = require('express');
-const faceapi = require('./self_modules/faceAPI')
+const faceapi = require('./self_modules/faceAPI');
+const { Console } = require('console');
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,8 +20,9 @@ app.post('/detect', function(req, res){
             res.json(data)})
     })
 app.post('/create', function(req, res){
-        create(req.body.name, req.body.urls)
-        .then(text=> res.send(text))
+        Console.length(req.body.urls)
+        //create(req.body.name, req.body.urls)
+        //.then(text=> res.send(text))
 })
 app.listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))
 
