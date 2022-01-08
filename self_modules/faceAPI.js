@@ -43,7 +43,7 @@ module.exports.createPerson = function(name){
             }
         )
         .then(res=> {
-            console.log(res.data.personId)
+            console.log('\n\n' + res.data.personId + '\n\n') 
             if(res.data.error) reject(res.data.error)
             resolve(res.data.personId)
         })
@@ -51,7 +51,7 @@ module.exports.createPerson = function(name){
 }
 
 module.exports.addFace = function(personId, url){
-    console.log(personID)
+    console.log('\n\n' + personId + '\n\n') 
     return new Promise(function(resolve, reject){
         axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons/" + personId + "/persistedFaces?detectionModel=detection_03",
             {

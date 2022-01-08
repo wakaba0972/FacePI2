@@ -38,13 +38,13 @@ function save(data){
     })
 }
 
-function saveUserData(name, personID){
-    console.log(personID)
+function saveUserData(name, personId){
+    console.log(personId)
     return new Promise(function(resolve, reject){
         let data = JSON.stringify({name: name});
-        fs.writeFile('./Persons Data/' + personID + '.json', data, function(err){
+        fs.writeFile('./Persons Data/' + personId + '.json', data, function(err){
             if(err) reject(err)
-            else resolve(personID)
+            else resolve(personId)
         });
     })
 }
@@ -52,12 +52,12 @@ function saveUserData(name, personID){
 function create(name, urls){
     return new Promise(function(resolve, reject){
         faceapi.createPerson(name)
-        .then(personID=> faceapi.addFace(personID, urls[0]))
-        .then(personID=> faceapi.addFace(personID, urls[1]))
-        .then(personID=> faceapi.addFace(personID, urls[2]))
-        .then((personID)=> {
-            console.log(personID + ' ' + name)
-            resolve(personID)
+        .then(personId=> faceapi.addFace(personId, urls[0]))
+        .then(personId=> faceapi.addFace(personId, urls[1]))
+        .then(personId=> faceapi.addFace(personId, urls[2]))
+        .then((personId)=> {
+            console.log(personId + ' ' + name)
+            resolve(personId)
         })
     })
 }
