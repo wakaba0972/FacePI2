@@ -2,7 +2,7 @@ var canvas = document.createElement('canvas')
 var context = canvas.getContext('2d');
 
 function getURL() {
-    if(v.faceIds.length > 2){
+    if(v.facesURL.length > 2){
         alert('already 3 photos')
         return
     }
@@ -15,13 +15,14 @@ function getURL() {
         data: dataUri.split(',')[1]
     })
     .then(res=> {
-        a=res
         console.log(res.data)
-        if(res.data){
-            alert('wrong')
+        if(res.data.msg){
+            console.log(res.data.msg)
             return
         }
-        v.faceIds.push(res.data)
+        else{
+            v.facesURL.push(res.data.url)
+        }
     })
     .catch(err=> {
         console.log(err)
@@ -29,7 +30,7 @@ function getURL() {
 }
 
 function creatPerson() {
-    if(V.faceIds.length < 3){
+    if(V.facesURL.length < 3){
         alert('需要3張照片')
         return
     }
