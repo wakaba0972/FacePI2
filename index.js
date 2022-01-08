@@ -39,9 +39,8 @@ function save(data){
         })
     })
 }
-/*
+
 function saveUserData(name, personId){
-    console.log(personId)
     return new Promise(function(resolve, reject){
         let data = JSON.stringify({name: name});
         fs.writeFile('./Persons Data/' + personId + '.json', data, function(err){
@@ -49,11 +48,12 @@ function saveUserData(name, personId){
             else resolve(personId)
         });
     })
-}*/
+}
 
 function create(name, urls){
     return new Promise(function(resolve, reject){
         faceapi.createPerson(name)
+        .then(personId=> saveUserData(personId))
         .then(personId=> {
             let num = 0;
             for(let i=0; i<3; ++i){

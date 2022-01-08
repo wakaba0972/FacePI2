@@ -1,3 +1,14 @@
 var a = require('./self_modules/faceAPI')
+var fs = require('fs')
 
-a.addFace('a3e33061-104d-47c7-b756-627917c6d9b6', 'https://facepi.herokuapp.com/faces/123.png')
+function saveUserData(name, personId){
+    return new Promise(function(resolve, reject){
+        let data = JSON.stringify({name: name});
+        fs.writeFile('./Persons Data/' + personId + '.json', data, function(err){
+            if(err) reject(err)
+            else resolve(personId)
+        });
+    })
+}
+
+saveUserData('asd', 'sd').then(a=> console.log(a))
