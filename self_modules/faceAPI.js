@@ -14,6 +14,7 @@ module.exports.detect = function(url) {
         if(res.data[0].faceId){
             res.data[0].url = url
             return res.data[0]
+            console.log(res.data[0])
         }
         else {
             return {data: 0}
