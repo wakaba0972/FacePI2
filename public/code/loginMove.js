@@ -22,13 +22,6 @@ function login() {
         console.log(res.data)
         if(res.data.status == 'success'){
             text.innerText = 'Wecome!!!!!! ' + res.data.name
-            
-            stream = display.srcObject;
-            tracks = stream.getTracks();
-            tracks.forEach(function(track) {
-                track.stop();
-             });
-             videoEl.srcObject = null;
         }
         else{
             text.innerText = res.data.msg
