@@ -37,7 +37,7 @@ function save(data){
         })
     })
 }
-
+/*
 function saveUserData(name, personId){
     console.log(personId)
     return new Promise(function(resolve, reject){
@@ -47,7 +47,7 @@ function saveUserData(name, personId){
             else resolve(personId)
         });
     })
-}
+}*/
 
 function create(name, urls){
     return new Promise(function(resolve, reject){
