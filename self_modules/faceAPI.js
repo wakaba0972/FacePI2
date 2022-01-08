@@ -11,12 +11,13 @@ module.exports.detect = function(url) {
         }
     )
     .then(res=> {
+        console.log('\n\n\n\n')
         if(res.data[0]){
             res.data[0].url = url
             return res.data[0]
         }
         else {
-            return {data: null}
+            return null
         }
     })
 }
