@@ -17,6 +17,9 @@ module.exports.detect = function(url) {
                 resolve({msg: 'wrong'})
             }
             else {
+                console.log(res)
+                console.log(typeof(res))
+                console.log(typeof(res) == 'undefined')
                 if(res.data[0].faceId){
                     res.data[0].url = url
                     console.log(res.data[0])
