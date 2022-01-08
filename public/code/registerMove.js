@@ -49,7 +49,7 @@ function createPerson() {
     else{
         axios.post('/create', {
             name: v.name,
-            urls: facesURL
+            urls: v.facesURL
         })
         .then(res=> {
             console.log(res.data)
