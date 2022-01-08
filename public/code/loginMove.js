@@ -36,6 +36,7 @@ function getName(personId){
         personId: personId
     })
     .then(res=> {
+        console.log(res.body.name)
         return res.body.name
     })
 }
