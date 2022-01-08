@@ -88,7 +88,7 @@ module.exports.identify = function(faceId){
             }
         )
         .then(res=> {
-            console.log(res.data)
+            console.log(res.data[0].candidates)
             if(res.data.error) {
                 reject(res.data.error)
             }
