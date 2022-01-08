@@ -16,6 +16,7 @@ app.post('/detect', function(req, res){
         //.then(path=> faceapi.detect(ip.address() + ':' + PORT + path))
         .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
         .then(data=> {
+            console.log('\n\n\n')
             console.log(data)
             res.json(data)})
     })
