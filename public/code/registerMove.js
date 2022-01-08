@@ -12,7 +12,8 @@ function getID() {
         data: dataUri.split(',')[1]
     })
     .then(res=> {
-        v.faceIds.push(res.data)
+        console.log(res)
+        v.faceIds.push(res)
     })
     .catch(err=> {
         console.log(err)
@@ -28,6 +29,8 @@ function creatPerson() {
         alert('請輸入暱稱')
     }
     else{
-
+        axios.post('/create', {
+            name: v.name
+        })
     }
 }

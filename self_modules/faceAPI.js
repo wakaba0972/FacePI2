@@ -11,7 +11,7 @@ module.exports.detect = function(url) {
         }
     )
     .then(res=> {
-        if(res.data.error) throw res.data.error
+        if(res.data.error) return res.data.error
         return res.data[0].faceId 
     })
 }

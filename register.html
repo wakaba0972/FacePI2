@@ -7,7 +7,7 @@
     <body>
         <div id='app'>
             <div>
-                <video id='display'></video>
+                <video id='display' style="max-height:35%; max-width:35%"></video>
             </div>
             <button id='openBtn' style="width: 100px; height: 100px;" onclick="openCam()">開啟攝影機</button>
             <button id='savBtn' onclick="getID()" style="width: 300px; height: 150px;">{{text}}</button>
@@ -15,8 +15,12 @@
             <button id='confirm'  onclick="creatPerson()"></button>
         </div>
     </body>
+    <script src="/code/camera.js"></script>
+    <script src="/code/registerMove.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        var v = new Vue = ({
+        var v = new Vue({
             el: '#app',
             data: {
                 name: '',
@@ -25,8 +29,4 @@
             }
         })
     </script>
-    <script src="/code/camera.js"></script>
-    <script src="/code/registerMove.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>
