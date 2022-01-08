@@ -1,5 +1,3 @@
-const { default: axios } = require("axios");
-
 var canvas = document.createElement('canvas')
 var context = canvas.getContext('2d');
 
