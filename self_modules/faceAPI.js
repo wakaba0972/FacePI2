@@ -19,6 +19,7 @@ module.exports.detect = function(url) {
             else {
                 console.log(res.data)
                 if(JSON.stringify(res.data) != '[]'){
+                    res.data[0].url = url
                     resolve(res.data[0])
                 }
                 else{
