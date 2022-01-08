@@ -73,24 +73,26 @@ module.exports.addFace = function(personId, url){
 }
 
 module.exports.identify = function(faceId){
-    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/identify",
-        {
-            faceIds: [faceId],
-            personGroupId: 'nscjkaljklsdav',
-            maxNumOfCandidatesReturned: 1,
-            confidenceThreshold: 0.6
-        },
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+    return new Promise(function(resolve, reject){
+        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/identify",
+            {
+                faceIds: [faceId],
+                personGroupId: 'nscjkaljklsdav',
+                maxNumOfCandidatesReturned: 1,
+                confidenceThreshold: 0.6
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                }
             }
-        }
-    )
-    .then(res=> {
-        console.log(res.data[0])
-        if(res.data.error) throw res.data.error
-        return res.data[0]
+        )
+        .then(res=> {
+            console.log(res.data[0])
+            if(res.data.error) reject(res.data.error)
+            resolve(res.data[0])
+        })
     })
 }
 

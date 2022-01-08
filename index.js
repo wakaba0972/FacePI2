@@ -58,7 +58,12 @@ function create(name, urls){
             let num = 0;
             for(let i=0; i<3; ++i){
                 faceapi.addFace(personId, urls[i])
-                .then(personId=> {if(++num == 3) resolve(personId)})
+                .then(personId=> {
+                    if(++num == 3) {
+                        faceapi.train()
+                        resolve(personId)
+                    }
+                })
             }
         })
     })

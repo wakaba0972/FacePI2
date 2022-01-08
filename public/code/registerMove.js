@@ -47,6 +47,7 @@ function createPerson() {
         alert('請輸入暱稱')
     }
     else{
+        v.Tstate = true,
         axios.post('/create', {
             name: v.name,
             urls: v.facesURL
