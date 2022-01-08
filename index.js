@@ -10,15 +10,15 @@ app.use(express.static('public'))
 app.use(express.json({limit : '50000kb'}))
 
 app.get('/', (req, res)=> {
-    res.sendFile(__dirname + '/home.html')
+    res.sendFile(__dirname + './site/home.html')
 })
 
 app.get('/registerSite', (req, res)=> {
-    res.sendFile(__dirname + '/register.html')
+    res.sendFile(__dirname + './site/register.html')
 })
 
 app.get('/loginSite', (req, res)=> {
-    res.sendFile(__dirname + '/login.html')
+    res.sendFile(__dirname + './site/login.html')
 })
 
 app.post('/detect', function(req, res){
