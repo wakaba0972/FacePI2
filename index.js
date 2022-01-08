@@ -20,7 +20,7 @@ app.post('/detect', function(req, res){
             res.json(data)})
     })
 app.post('/create', function(req, res){
-        Console.length(req.body.urls)
+        console.log(req.body.urls)
         //create(req.body.name, req.body.urls)
         //.then(text=> res.send(text))
 })
