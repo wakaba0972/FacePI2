@@ -88,13 +88,13 @@ module.exports.identify = function(faceId){
             }
         )
         .then(res=> {
-            console.log(res.data[0].candidates)
+            console.log(res.data[0].candidates[0].personId)
             if(res.data.error) {
                 reject(res.data.error)
             }
             else{
                 if(JSON.stringify(res.data.candidates) != '[]'){
-                    resolve(res.data[0].candidates.personId)
+                    resolve(res.data[0].candidates[0].personId)
                 }
                 else{
                     reject('no face')
