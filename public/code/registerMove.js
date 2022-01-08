@@ -28,7 +28,7 @@ function getURL() {
             return
         }
         else{
-            let temp = v.text[6]
+            let temp = v.text
             temp[6] -= 1
             v.text = temp
             v.facesURL.push(res.data.url)
