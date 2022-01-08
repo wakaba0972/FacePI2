@@ -27,6 +27,7 @@ module.exports.detect = function(url) {
                     resolve({msg: 'no face'})
                 }
             }
+        })
     })
 }
 
