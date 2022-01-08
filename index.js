@@ -10,11 +10,11 @@ app.use(express.static('public'))
 app.use(express.json({limit : '50000kb'}))
 
 app.get('/', (req, res)=> {
-    res.sendFile(__dirname + '/register.html')
+    res.sendFile(__dirname + '/home.html')
 })
 
 app.get('/registerSite', (req, res)=> {
-    res.sendFile(__dirname + '/home.html')
+    res.sendFile(__dirname + '/register.html')
 })
 
 app.get('/loginSite', (req, res)=> {
