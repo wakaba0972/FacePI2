@@ -4,7 +4,7 @@ var btn = document.getElementById('openBtn')
 var context = canvas.getContext('2d');
 
 function openCam(){
-    let constraints = {video: {width: 500, height: 500, facingMode: "user"}}
+    let constraints = {video: {width: 500, height: 500}}
     navigator.mediaDevices.getUserMedia(constraints)
         .then(function (stream) {
             display.srcObject = stream
