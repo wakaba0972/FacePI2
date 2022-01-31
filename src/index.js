@@ -6,7 +6,7 @@ const faceapi = require('./self_modules/faceAPI');
 const PORT = process.env.PORT || 3000;
 
 var app = express()
-app.use(express.static('public'))
+app.use(express.static('src/public'))
 app.use(express.json({limit : '50000kb'}))
 
 app.get('/', (req, res)=> {
