@@ -6,7 +6,7 @@ const faceapi = require('./self_modules/faceAPI');
 const PORT = process.env.PORT || 3000;
 
 var app = express()
-app.use(express.static('src/public'))
+app.use(express.static('./public'))
 app.use(express.json({limit : '50000kb'}))
 
 app.get('/', (req, res)=> {
@@ -43,7 +43,7 @@ app.post('/create', function(req, res){
 
 app.post('/login', function(req, res){
     save(req.body.data)
-    .then(path=> {faceapi.detect('https://facepi.herokuapp.com/' + path); console.log('https://facepi.herokuapp.com/' + path)})
+    .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
     .then(data=> faceapi.identify(data.faceId))
     .then(personId=> faceapi.getPerson(personId))
     .then(name=> res.json({status: 'success', name: name}))
