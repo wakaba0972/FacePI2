@@ -56,8 +56,7 @@ function save(data){
     return new Promise(function(resolve, reject){
         let buf = Buffer.from(data, 'base64')
         let id = Date.now()
-        let path = './src/public/faces/' + id + '.png'
-        console.log(path)
+        let path = './public/faces/' + id + '.png'
         fs.writeFile(path, buf, function(err) {
             if(err) reject(err)
             resolve(path.slice(9))
