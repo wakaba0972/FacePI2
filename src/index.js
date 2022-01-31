@@ -1,7 +1,7 @@
 const fs = require('fs');
 const ip = require("ip");
 const express = require('express');
-const faceapi = require('src/self_modules/faceAPI');
+const faceapi = require(__dirname + '/self_modules/faceAPI.js');
 
 const PORT = process.env.PORT || 3000;
 
