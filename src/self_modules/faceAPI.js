@@ -31,7 +31,7 @@ module.exports.detect = function(url) {
 
 module.exports.createPerson = function(name){
     return new Promise(function(resolve, reject){
-        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons",
+        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/persons",
             {
                 name: name
             },
@@ -53,7 +53,7 @@ module.exports.createPerson = function(name){
 module.exports.addFace = function(personId, url){
     console.log('\n\n' + personId + '\n\n') 
     return new Promise(function(resolve, reject){
-        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons/" + personId + "/persistedFaces?detectionModel=detection_03",
+        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/persons/" + personId + "/persistedFaces?detectionModel=detection_03",
             {
                 url: url
             },
@@ -76,7 +76,7 @@ module.exports.identify = function(faceId){
         axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/identify",
             {
                 faceIds: [faceId],
-                personGroupId: 'nscjkaljklsdav',
+                personGroupId: 'chatbox20220131',
                 maxNumOfCandidatesReturned: 1,
                 confidenceThreshold: 0.6
             },
@@ -94,7 +94,7 @@ module.exports.identify = function(faceId){
             }
             else{
                 console.log(JSON.stringify(res.data[0].candidates[0]) + '  ' + (res.data[0].candidates[0] == undefined))
-                if(JSON.stringify(res.data.candidates) != '[]' && typeof(res.data[0].candidates[0]) != undefined){
+                if(JSON.stringify(res.data.candidates) != '[]' && res.data[0].candidates[0] != undefined){
                     resolve(res.data[0].candidates[0].personId)
                 }
                 else{
@@ -108,7 +108,7 @@ module.exports.identify = function(faceId){
 module.exports.getPerson = function(personId){
     return new Promise(function(resolve, reject){
         console.log('\n\n'+personId)
-        axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons/" + personId,
+        axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/persons/" + personId,
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -125,7 +125,7 @@ module.exports.getPerson = function(personId){
 }
 
 module.exports.train = function(){
-    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/train",
+    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/train",
         {},
         {
             headers: {
@@ -139,7 +139,7 @@ module.exports.train = function(){
 }
 
 module.exports.trainStatus = function(){
-    axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/training",
+    axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/training",
     {
         headers: {
             "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
