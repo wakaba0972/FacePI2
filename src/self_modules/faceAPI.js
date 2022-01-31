@@ -107,7 +107,7 @@ module.exports.identify = function(faceId){
 
 module.exports.getPerson = function(personId){
     return new Promise(function(resolve, reject){
-        console.log('\n\n')
+        console.log('\n\n'+personId)
         axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/nscjkaljklsdav/persons/" + personId,
             {
                 headers: {
