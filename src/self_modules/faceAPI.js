@@ -121,6 +121,7 @@ module.exports.getPerson = function(personId){
             if(res.data.error) reject(res.data.error)
             resolve(res.data.name)
         })
+        .catch(()=> reject())
     })
 }
 
