@@ -6,7 +6,7 @@ const faceapi = require('./self_modules/faceAPI');
 const PORT = process.env.PORT || 3000;
 
 var app = express()
-app.use(express.static('./public'))
+app.use(express.static('src/public'))
 app.use(express.json({limit : '50000kb'}))
 
 app.get('/', (req, res)=> {
@@ -56,11 +56,11 @@ function save(data){
     return new Promise(function(resolve, reject){
         let buf = Buffer.from(data, 'base64')
         let id = Date.now()
-        let path = './public/faces/' + id + '.png'
+        let path = 'src/public/faces/' + id + '.png'
         console.log('faces/' + id + '.png')
         fs.writeFile(path, buf, function(err) {
             if(err) reject(err)
-            resolve(path.slice(9))
+            resolve(path.slice(11))
         })
     })
 }
