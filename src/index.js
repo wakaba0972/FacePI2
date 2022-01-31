@@ -43,7 +43,7 @@ app.post('/create', function(req, res){
 
 app.post('/login', function(req, res){
     save(req.body.data)
-    .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
+    .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path); console.log('https://facepi.herokuapp.com/' + path))
     .then(data=> faceapi.identify(data.faceId))
     .then(personId=> faceapi.getPerson(personId))
     .then(name=> res.json({status: 'success', name: name}))
@@ -57,7 +57,6 @@ function save(data){
         let buf = Buffer.from(data, 'base64')
         let id = Date.now()
         let path = './public/faces/' + id + '.png'
-        console.log(path.slice(9))
         fs.writeFile(path, buf, function(err) {
             if(err) reject(err)
             resolve(path.slice(9))
