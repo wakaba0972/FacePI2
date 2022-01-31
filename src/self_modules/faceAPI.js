@@ -93,9 +93,8 @@ module.exports.identify = function(faceId){
                 reject(res.data.error)
             }
             else{
-                console.log(JSON.stringify(res.data[0].candidates) + '  ' + typeof(res.data[0].candidates))
-                if(JSON.stringify(res.data.candidates) != '[]'){
-                    console.log('identify result:   ' + JSON.stringify(res.data.candidates))
+                console.log(JSON.stringify(res.data[0].candidates[0]) + '  ' + typeof(res.data[0].candidates[0]))
+                if(JSON.stringify(res.data.candidates) != '[]' && res.data[0].candidates[0] != undefined){
                     resolve(res.data[0].candidates[0].personId)
                 }
                 else{
