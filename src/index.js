@@ -58,7 +58,7 @@ var app = express()
         .then(personId=> faceapi.getPerson(personId))
         .then(name=> {
             let key = Number(Math.random().toString() + Date.now()).toString(16).substr(2)
-            KEYS.key = {name: name, start: Date.now()}
+            KEYS[key] = {name: name, start: Date.now()}
             res.json({status: 'success', name: name, key: key})
         })
         .catch(()=> res.json({status: 'failed', msg: '登入失敗! 請確認\n 1.你已成功註冊\n 2.有照到臉'}))
