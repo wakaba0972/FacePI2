@@ -6,17 +6,32 @@ const faceapi = require('./self_modules/faceAPI');
 
 const PORT = process.env.PORT || 3000;
 
+var KEYS = {}
 var app = express()
     .use(express.static('src/public'))
     .use(express.json({limit : '50000kb'}))
     .get('/', (req, res)=> {
-        res.sendFile(__dirname + '/site/home.html')
+        res.sendFile(__dirname + '/public/sites/home.html')
     })
     .get('/registerSite', (req, res)=> {
-        res.sendFile(__dirname + '/site/register.html')
+        res.sendFile(__dirname + '/public/sites/register.html')
     })
     .get('/loginSite', (req, res)=> {
-        res.sendFile(__dirname + '/site/login.html')
+        res.sendFile(__dirname + '/public/sites/login.html')
+    })
+    .get('/chatRoom', (req, res)=> {
+        let key = req.params.key
+        let now = Date.now()
+        Object.keys(KEYS).forEach((key)=> {
+            if(now - KEYS[key].start > 300000) delete KEYS[key]
+        })
+        if(KEYS[key]) {
+            delete KEYS[key]
+            res.sendFile(__dirname + '/public/sites/chat.html')
+        }
+        else {
+            res.send('金鑰過期 請重新登入')
+        }
     })
     .post('/detect', function(req, res){
         save(req.body.data)
@@ -41,8 +56,11 @@ var app = express()
         .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
         .then(data=> faceapi.identify(data.faceId))
         .then(personId=> faceapi.getPerson(personId))
-        //.then(name=> res.json({status: 'success', name: name}))
-        .then(name=> res.sendFile(__dirname + '/site/chat.html'))
+        .then(name=> {
+            let key = Number(Math.random().toString() + Date.now()).toString(16).substr(2)
+            KEYS.key = {name: name, start: Date.now()}
+            res.json({status: 'success', name: name, key: key})
+        })
         .catch(()=> res.json({status: 'failed', msg: '登入失敗! 請確認\n 1.你已成功註冊\n 2.有照到臉'}))
     })
     .listen(PORT, ()=> console.log('Listening on ' + ip.address() + ':' + PORT))

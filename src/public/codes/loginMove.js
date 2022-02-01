@@ -22,6 +22,7 @@ function login() {
         console.log(res.data)
         if(res.data.status == 'success'){
             text.innerText = 'Wecome!!!!!! ' + res.data.name
+            window.location.href = 'https://facepi.herokuapp.com/chatRoom?key=' + res.data.key
         }
         else{
             text.innerText = res.data.msg
