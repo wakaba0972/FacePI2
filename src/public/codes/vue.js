@@ -1,24 +1,9 @@
 var v = new Vue({
     el: '#app',
-    created() {
-        if(localStorage.getItem('name') == null){
-            let name = prompt('請輸入暱稱')
-            localStorage.setItem('name', name)
-            this.name = name
-        }
-        else{
-            this.name = localStorage.getItem('name')
-        }
-        window.addEventListener('keypress', (key) => {
-            if(key.which == 13){
-                this.send()
-            }
-        });
-    },
     data: {
         hasStar: true,
         text: "送出",
-        name: "",
+        name: new URL(window.location.href).searchParams.get('name'),
         msg: "",
         id: ""
     },
@@ -47,3 +32,9 @@ var v = new Vue({
         }
     },
 })
+
+window.addEventListener('keypress', (key) => {
+    if(key.which == 13){
+        this.send()
+    }
+});

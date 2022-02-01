@@ -21,8 +21,8 @@ function login() {
         btn.disabled = 0
         console.log(res.data)
         if(res.data.status == 'success'){
-            text.innerText = 'Wecome!!!!!! ' + res.data.name
-            window.location.href = 'https://facepi.herokuapp.com/chatRoom?key=' + res.data.key
+            //text.innerText = 'Wecome!!!!!! ' + res.data.name
+            window.location.href = 'https://facepi.herokuapp.com/chatRoom?key=' + res.data.key + '&name=' + res.data.name
         }
         else{
             text.innerText = res.data.msg
