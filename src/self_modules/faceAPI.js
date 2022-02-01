@@ -1,5 +1,4 @@
 const axios = require("axios");
-const unlink = require("fs").unlink
 
 module.exports.detect = function(path) {
     return new Promise(function(resolve, reject){
@@ -13,11 +12,6 @@ module.exports.detect = function(path) {
             }
         )
         .then(res=> {
-            unlink(path, ()=> {
-                resolve()
-                console.log('delete ' + path)
-            })
-
             if(res.data.error){
                 reject('wrong')
             }
