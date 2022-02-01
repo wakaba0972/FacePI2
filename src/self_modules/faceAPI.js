@@ -1,9 +1,10 @@
 const axios = require("axios");
+const unlink = require("fs").unlink
 
-module.exports.detect = function(url) {
+module.exports.detect = function(path) {
     return new Promise(function(resolve, reject){
         axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400",
-            {url: url},
+            {url: 'https://facepi.herokuapp.com/' + path.slice(11)},
             {
                 headers:{
                     "Content-Type": "application/json",
@@ -12,6 +13,11 @@ module.exports.detect = function(url) {
             }
         )
         .then(res=> {
+            fs.unlink(path, ()=> {
+                resolve()
+                console.log('delete ' + path)
+            })
+            
             if(res.data.error){
                 reject('wrong')
             }

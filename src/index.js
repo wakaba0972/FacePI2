@@ -37,7 +37,7 @@ var app = express()
     .post('/detect', function(req, res){
         save(req.body.data)
         //.then(path=> faceapi.detect(ip.address() + ':' + PORT + path))
-        .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
+        .then(path=> faceapi.detect(path))
         .then(data=> {
             res.json(data)})
         .catch(()=> res.json({msg: '偵測失敗! 請確實照到臉'}))
@@ -54,11 +54,7 @@ var app = express()
     })
     .post('/login', function(req, res){
         saveImage(req.body.data)
-        .then(path=> {
-            faceapi.detect('https://facepi.herokuapp.com/' + path.slice(11))
-            .then(deleteImage(path))
-            .catch(()=> console.log('\nBUG: deleteImage()\n'))
-        })
+        .then(path=> faceapi.detect(path))
         .then(data=> faceapi.identify(data.faceId))
         .then(personId=> faceapi.getPerson(personId))
         .then(name=> {
@@ -151,14 +147,6 @@ function saveImage(data){
             resolve(path)
         })
     })
-}
-
-function deleteImage(path){
-    fs.unlink(path, ()=> {
-        resolve()
-        console.log('delete ' + path)
-    })
-    return 
 }
 
 function create(name, urls){
