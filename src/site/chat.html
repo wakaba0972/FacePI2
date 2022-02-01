@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    </head>
+    <body>
+        <img id='bg' src="http://i.imgur.com/6tEkGBP.gif" style="position: absolute; height: 100%; width: 100%; opacity: 0;">
+        <div id='app' style="position: relative;">
+            <div id='chatBox'>
+                <div id='msgBox' style="overflow-y: scroll; height: 85%"></div>
+                <div id='sendBox'>
+                    <textarea v-model='msg' rows="3" cols="40" onkeydown="if(event.keyCode==13){event.preventDefault(); v.send()}"></textarea>
+                    <button v-on:click='send'>{{text}}</button>
+                    <button v-on:click='star'>星爆</button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <link href="/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/vue.js"></script>
+    <script src="/ws.js"></script>
+</html>
