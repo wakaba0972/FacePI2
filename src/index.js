@@ -3,6 +3,7 @@ const ip = require("ip");
 const express = require('express');
 const WebSocket = require('ws').Server
 const faceapi = require('./self_modules/faceAPI');
+const { resolve } = require('path');
 
 const PORT = process.env.PORT || 3000;
 
@@ -30,7 +31,7 @@ var app = express()
             res.sendFile(__dirname + '/public/sites/chat.html')
         }
         else {
-            res.send('金鑰過期 請重新登入')
+            res.sendFile(__dirname + '/public/sites/invalid.html')
         }
     })
     .post('/detect', function(req, res){
@@ -52,8 +53,12 @@ var app = express()
         })
     })
     .post('/login', function(req, res){
-        save(req.body.data)
-        .then(path=> faceapi.detect('https://facepi.herokuapp.com/' + path))
+        saveImage(req.body.data)
+        .then(path=> {
+            faceapi.detect('https://facepi.herokuapp.com/' + path.slice(11))
+            .then(deleteImage(path))
+            .catch(()=> console.log('\nBUG: deleteImage()\n'))
+        })
         .then(data=> faceapi.identify(data.faceId))
         .then(personId=> faceapi.getPerson(personId))
         .then(name=> {
@@ -135,7 +140,7 @@ setInterval(()=>{
 
 
 
-function save(data){
+function saveImage(data){
     return new Promise(function(resolve, reject){
         let buf = Buffer.from(data, 'base64')
         let id = Date.now()
@@ -143,9 +148,17 @@ function save(data){
         console.log('faces/' + id + '.png')
         fs.writeFile(path, buf, function(err) {
             if(err) reject(err)
-            resolve(path.slice(11))
+            resolve(path)
         })
     })
+}
+
+function deleteImage(path){
+    fs.unlink(path, ()=> {
+        resolve()
+        console.log('delete ' + path)
+    })
+    return 
 }
 
 function create(name, urls){
