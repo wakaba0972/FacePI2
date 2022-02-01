@@ -38,7 +38,7 @@ var app = express()
         }
     })
     .post('/detect', function(req, res){
-        save(req.body.data)
+        saveImage(req.body.data)
         //.then(path=> faceapi.detect(ip.address() + ':' + PORT + path))
         .then(path=> faceapi.detect(path))
         .then(data=> {
