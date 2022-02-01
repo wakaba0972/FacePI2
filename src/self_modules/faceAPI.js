@@ -18,7 +18,7 @@ module.exports.detect = function(path) {
             else {
                 console.log(res.data)
                 if(JSON.stringify(res.data) != '[]'){
-                    res.data[0].url = url
+                    res.data[0].url = 'https://facepi.herokuapp.com/' + path.slice(11)
                     resolve(res.data[0])
                 }
                 else{
