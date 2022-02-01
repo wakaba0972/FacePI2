@@ -13,11 +13,11 @@ module.exports.detect = function(path) {
             }
         )
         .then(res=> {
-            fs.unlink(path, ()=> {
+            unlink(path, ()=> {
                 resolve()
                 console.log('delete ' + path)
             })
-            
+
             if(res.data.error){
                 reject('wrong')
             }
