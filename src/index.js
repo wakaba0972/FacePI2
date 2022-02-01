@@ -21,6 +21,7 @@ var app = express()
     })
     .get('/chatRoom', (req, res)=> {
         let key = req.params.key
+        console.log(key)
         let now = Date.now()
         Object.keys(KEYS).forEach((key)=> {
             if(now - KEYS[key].start > 300000) delete KEYS[key]
