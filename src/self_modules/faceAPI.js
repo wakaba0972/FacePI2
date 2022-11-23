@@ -1,4 +1,5 @@
 const axios = require("axios");
+const APIKEY = process.env.AZURE_FACEAPI_KEY;
 
 module.exports.detect = function(path) {
     return new Promise(function(resolve, reject){
@@ -7,7 +8,7 @@ module.exports.detect = function(path) {
             {
                 headers:{
                     "Content-Type": "application/json",
-                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                    "Ocp-Apim-Subscription-Key": APIKEY
                 }
             }
         )
@@ -38,7 +39,7 @@ module.exports.createPerson = function(name){
             {
                 headers: {
                     "Content-Type": "application/json",
-                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                    "Ocp-Apim-Subscription-Key": APIKEY
                 }
             }
         )
@@ -60,7 +61,7 @@ module.exports.addFace = function(personId, url){
             {
                 headers: {
                     "Content-Type": "application/json",
-                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                    "Ocp-Apim-Subscription-Key": APIKEY
                 }
             }
         )
@@ -83,7 +84,7 @@ module.exports.identify = function(faceId){
             {
                 headers: {
                     "Content-Type": "application/json",
-                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                    "Ocp-Apim-Subscription-Key": APIKEY
                 }
             }
         )
@@ -113,7 +114,7 @@ module.exports.getPerson = function(personId){
             {
                 headers: {
                     "Content-Type": "application/json",
-                    "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                    "Ocp-Apim-Subscription-Key": APIKEY
                 }
             },
         )
@@ -131,7 +132,7 @@ module.exports.train = function(){
         {},
         {
             headers: {
-                "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+                "Ocp-Apim-Subscription-Key": APIKEY
             }
         }
     )
@@ -144,7 +145,7 @@ module.exports.trainStatus = function(){
     axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/training",
     {
         headers: {
-            "Ocp-Apim-Subscription-Key": "b9160fbd882f47bd821205a4bce64354"
+            "Ocp-Apim-Subscription-Key": APIKEY
         }
     })
     .then(res=> {
