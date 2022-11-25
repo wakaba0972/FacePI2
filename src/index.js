@@ -145,9 +145,9 @@ function saveImage(data){
         console.log(123123)
         let buf = Buffer.from(data, 'base64')
         let id = Date.now()
-        let path = 'public/faces/' + id + '.png'
+        let path = 'faces/' + id + '.png'
         console.log('faces/' + id + '.png')
-        fs.writeFile(__dirname + '/' + path, buf, function(err) {
+        fs.writeFile(__dirname + '/public/' + path, buf, function(err) {
             if(err) reject(err)
             resolve(path)
         })
