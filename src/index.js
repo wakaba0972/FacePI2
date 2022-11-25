@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 var KEYS = {}
 var app = express()
-    .use(express.static('src/public'))
+    .use(express.static(__dirname + '/public'))
     .use(express.json({limit : '50000kb'}))
     .get('/', (req, res)=> {
         res.sendFile(__dirname + '/public/sites/home.html')
@@ -42,7 +42,8 @@ var app = express()
         //.then(path=> faceapi.detect(ip.address() + ':' + PORT + path))
         .then(path=> faceapi.detect(path))
         .then(data=> {
-            res.json(data)})
+            res.json(data)
+        })
         .catch(()=> res.json({msg: '偵測失敗! 請確實照到臉'}))
     })
     .post('/create', function(req, res){
@@ -141,11 +142,12 @@ setInterval(()=>{
 
 function saveImage(data){
     return new Promise(function(resolve, reject){
+        console.log(123123)
         let buf = Buffer.from(data, 'base64')
         let id = Date.now()
-        let path = 'src/public/faces/' + id + '.png'
+        let path = 'public/faces/' + id + '.png'
         console.log('faces/' + id + '.png')
-        fs.writeFile(path, buf, function(err) {
+        fs.writeFile(__dirname + '/' + path, buf, function(err) {
             if(err) reject(err)
             resolve(path)
         })
