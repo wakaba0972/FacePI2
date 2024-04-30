@@ -22,7 +22,7 @@ function login() {
         console.log(res.data)
         if(res.data.status == 'success'){
             //text.innerText = 'Wecome!!!!!! ' + res.data.name
-            window.location.href = location.origin + 'chatRoom?key=' + res.data.key + '&name=' + res.data.name
+            window.location.href = location.origin + '/chatRoom?key=' + res.data.key + '&name=' + res.data.name
         }
         else{
             text.innerText = res.data.msg

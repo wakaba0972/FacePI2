@@ -4,7 +4,7 @@ const APIKEY = process.env.AZURE_FACEAPI_KEY;
 module.exports.detect = function(path) {
     return new Promise(function(resolve, reject){
         axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&recognitionModel=recognition_03&returnRecognitionModel=false&detectionModel=detection_03&faceIdTimeToLive=86400",
-            {url: 'https://facepi.herokuapp.com/' + path},
+            {url: location.origin + '/' + path},
             {
                 headers:{
                     "Content-Type": "application/json",
@@ -19,7 +19,7 @@ module.exports.detect = function(path) {
             else {
                 console.log(res.data)
                 if(JSON.stringify(res.data) != '[]'){
-                    res.data[0].url = 'https://facepi.herokuapp.com/' + path
+                    res.data[0].url = location.origin + '/' + path
                     resolve(res.data[0])
                 }
                 else{
