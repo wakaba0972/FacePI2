@@ -56,7 +56,7 @@ function createPerson() {
         })
         .then(res=> {
             if(res.data.status == 'success'){
-                window.location.href = 'https://facepi.herokuapp.com/loginSite'
+                window.location.href = location.origin + 'loginSite'
             }
             else{
                 v.alert = res.data.msg
