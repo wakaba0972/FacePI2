@@ -32,7 +32,7 @@ module.exports.detect = function(path) {
 
 module.exports.createPerson = function(name){
     return new Promise(function(resolve, reject){
-        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/persons",
+        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20240501/persons",
             {
                 name: name
             },
@@ -54,7 +54,7 @@ module.exports.createPerson = function(name){
 module.exports.addFace = function(personId, url){
     console.log('\n\n' + personId + '\n\n') 
     return new Promise(function(resolve, reject){
-        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/persons/" + personId + "/persistedFaces?detectionModel=detection_03",
+        axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20240501/persons/" + personId + "/persistedFaces?detectionModel=detection_03",
             {
                 url: url
             },
@@ -77,7 +77,7 @@ module.exports.identify = function(faceId){
         axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/identify",
             {
                 faceIds: [faceId],
-                personGroupId: 'chatbox20220131',
+                personGroupId: 'chatbox20240501',
                 maxNumOfCandidatesReturned: 1,
                 confidenceThreshold: 0.6
             },
@@ -110,7 +110,7 @@ module.exports.identify = function(faceId){
 module.exports.getPerson = function(personId){
     return new Promise(function(resolve, reject){
         console.log('\n\n'+personId)
-        axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/persons/" + personId,
+        axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20240501/persons/" + personId,
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -128,7 +128,7 @@ module.exports.getPerson = function(personId){
 }
 
 module.exports.train = function(){
-    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/train",
+    axios.post("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20240501/train",
         {},
         {
             headers: {
@@ -142,7 +142,7 @@ module.exports.train = function(){
 }
 
 module.exports.trainStatus = function(){
-    axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20220131/training",
+    axios.get("https://eastasia.api.cognitive.microsoft.com/face/v1.0/persongroups/chatbox20240501/training",
     {
         headers: {
             "Ocp-Apim-Subscription-Key": APIKEY

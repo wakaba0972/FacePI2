@@ -136,10 +136,6 @@ setInterval(()=>{
     })
 }, 40000)
 
-
-
-
-
 function saveImage(data){
     return new Promise(function(resolve, reject){
         console.log(123123)
