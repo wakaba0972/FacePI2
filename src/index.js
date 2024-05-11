@@ -21,8 +21,14 @@ var app = express()
         res.sendFile(__dirname + '/public/sites/login.html')
     })
     .get('/chatRoom', (req, res)=> {
+        /*
         let key = req.query.key
         let now = Date.now()
+        */
+
+        res.sendFile(__dirname + '/public/sites/chat.html')
+        
+        /*
         Object.keys(KEYS).forEach((key)=> {
             if(now - KEYS[key].start > 300000) delete KEYS[key]
         })
@@ -36,6 +42,7 @@ var app = express()
         else {
             res.sendFile(__dirname + '/public/sites/invalid.html')
         }
+        */
     })
     .post('/detect', function(req, res){
         saveImage(req.body.data)
